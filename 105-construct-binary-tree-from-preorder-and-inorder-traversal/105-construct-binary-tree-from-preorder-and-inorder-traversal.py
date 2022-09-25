@@ -7,6 +7,8 @@
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
         """
+        last solved: 9/2022, difficulty: 3/5
+        
         preorder - node, left, right
         inorder - left, node, right
         
