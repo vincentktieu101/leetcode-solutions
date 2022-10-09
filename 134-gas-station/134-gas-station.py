@@ -7,16 +7,19 @@ class Solution:
         [-2,-2,-2,3,3]
         """
         
-        if sum(gas) < sum(cost):
-            return -1
+        diff = [gas[i] - cost[i] for i in range(len(gas))]
         
-        start = 0
+        if sum(diff) < 0: return -1
+        
+        ans = 0
         extra = 0
         
-        for i in range(len(gas)):
-            extra += gas[i] - cost[i]
+        for i in range(len(diff)):
+            extra += diff[i]
+            
             if extra < 0:
-                start = i + 1
+                ans = i + 1
                 extra = 0
         
-        return start
+        return ans
+                
