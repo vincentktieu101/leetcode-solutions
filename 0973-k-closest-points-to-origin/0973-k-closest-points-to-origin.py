@@ -4,9 +4,10 @@ class Solution:
     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
         # last solved: 10/2022, difficulty: 3/5
         h = []
-        for x, y in points:
+        for point in points:
+            x, y = point
             distance = (x ** 2 + y ** 2) ** 1/2
-            h.append((distance, [x, y]))
+            h.append((distance, point))
         heapq.heapify(h)
         ans = []
         for i in range(k):
