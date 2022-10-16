@@ -11,6 +11,6 @@ class Solution:
         heapq.heapify(h)
         ans = []
         for i in range(k):
-            curr = heapq.heappop(h)
-            ans.append(curr[1])
+            _, point = heapq.heappop(h)
+            ans.append(point)
         return ans
