@@ -1,31 +1,30 @@
 class Trie:
-    # last solved: 10/2022, difficulty: 3/5
-    
+
     def __init__(self):
-        self.values = {}
+        self.children = {}
         self.end = False
 
     def insert(self, word: str) -> None:
-        if word == "":
-            self.end = True
-            return
-        value, rest = word[0], word[1:]
-        trie = self.values.get(value, Trie())
-        trie.insert(rest)
-        self.values[value] = trie
+        n = self
+        for letter in word:
+            if letter not in n.children:
+                n.children[letter] = Trie()
+            n = n.children[letter]
+        n.end = True
 
     def search(self, word: str) -> bool:
-        if word == "": return self.end
-        value, rest = word[0], word[1:]
-        if value not in self.values: return False
-        return self.values[value].search(rest)
+        n = self
+        for letter in word:
+            if letter not in n.children: return False
+            n = n.children[letter]
+        return n.end
 
-    def startsWith(self, prefix: str) -> bool:
-        word = prefix
-        if word == "": return True
-        value, rest = word[0], word[1:]
-        if value not in self.values: return False
-        return self.values[value].startsWith(rest)
+    def startsWith(self, word: str) -> bool:
+        n = self
+        for letter in word:
+            if letter not in n.children: return False
+            n = n.children[letter]
+        return True
 
 
 # Your Trie object will be instantiated and called as such:
