@@ -1,4 +1,6 @@
 class Trie:
+    # last solved: 10/2022, difficulty: 3/5
+    
     def __init__(self):
         self.values = {}
         self.end = False
