@@ -4,25 +4,26 @@ class Trie:
         self.end = False
 
     def insert(self, word: str) -> None:
-        if not word: 
+        if word == "":
             self.end = True
             return
-        letter = word[0]
-        if not self.values.get(letter, False):
-            self.values[letter] = Trie()
-        self.values[letter].insert(word[1:])
+        value, rest = word[0], word[1:]
+        trie = self.values.get(value, Trie())
+        trie.insert(rest)
+        self.values[value] = trie
 
     def search(self, word: str) -> bool:
-        if not word: return self.end
-        letter = word[0]
-        if letter in self.values: return self.values[letter].search(word[1:])
-        return False
+        if word == "": return self.end
+        value, rest = word[0], word[1:]
+        if value not in self.values: return False
+        return self.values[value].search(rest)
 
     def startsWith(self, prefix: str) -> bool:
-        if not prefix: return True
-        letter = prefix[0]
-        if letter in self.values: return self.values[letter].startsWith(prefix[1:])
-        return False
+        word = prefix
+        if word == "": return True
+        value, rest = word[0], word[1:]
+        if value not in self.values: return False
+        return self.values[value].startsWith(rest)
 
 
 # Your Trie object will be instantiated and called as such:
