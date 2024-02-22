@@ -6,7 +6,7 @@ class Solution:
         while i < len(nums) - 2:
             j = i + 1
             k = len(nums) - 1
-            while i < j < k:
+            while j < k:
                 target = -nums[i]
                 if target == nums[j] + nums[k]:
                     ans.append([nums[i], nums[j], nums[k]])
